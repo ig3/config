@@ -1,0 +1,27 @@
+{
+	"name": "@ig3/config",
+	"version": "0.0.1",
+	"main": "index.js",
+	"description": "",
+	"license": "(ISC)",
+	"devDependencies": {
+		"c8": "^7.10.0",
+		"@ig3/eslint-config-entrain": "^2.0.3",
+		"multi-tape": "^1.6.1",
+		"tape": "^5.3.1"
+	},
+	"scripts": {
+		"test": "eslint . && c8 multi-tape test/*.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@git.entrain.nz:ig3/config"
+	},
+	"eslintConfig": {
+		"extends": "@ig3/eslint-config-entrain"
+	},
+	"dependencies": {
+		"deep-extend": "^0.6.0",
+		"ini": "^2.0.0"
+	}
+}
