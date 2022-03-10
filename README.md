@@ -69,6 +69,7 @@ Default paths are:
  * ~/.<name>
  * ~/.<name>/config
  * .<name>
+ * <name>
 
 ```
 options.paths = [

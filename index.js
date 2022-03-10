@@ -28,6 +28,7 @@ module.exports = (opts = {}) => {
     opts.paths.push(pathop.join(home, '.' + opts.name));
     opts.paths.push(pathop.join(home, '.' + opts.name, 'config'));
     opts.paths.push('.' + opts.name);
+    opts.paths.push(opts.name);
     if (config) opts.paths.push(config);
   }
   if (!opts.parsers) {
@@ -66,7 +67,7 @@ module.exports = (opts = {}) => {
         configs.push(config);
       }
     } catch (err) {
-      if (err.code !== 'ENOENT') throw err;
+      if (err.code !== 'ENOENT' && err.code !== 'EISDIR') throw err;
       if (!extension) {
         opts.extensions.forEach(extension => {
           const extended = path + extension;
