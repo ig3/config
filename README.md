@@ -19,6 +19,11 @@ console.log("config: ", JSON.stringify(config, null, 2));
 The package exports a single function that takes an options argument and
 returns a configuration object.
 
+Configuration is read from defaults, one or more configuration files,
+environment variables beginning with the name of the program and command
+line arguments. The same parameter may appear more than once in which
+case the later appearance overrides previous appearances.
+
 ### Configuration
 Options may be passed to the factory:
 
@@ -34,10 +39,23 @@ If truthy, print debug messages to console.debug.
 options.debug = true;
 ```
 
+#### defaults ({})
+Default configuration parameters.
+
+```
+options.defaults = {
+  option1: 'value1',
+  option2: 'value2',
+  option3: true,
+  option4: 1234
+};
+```
+
 #### argv (minimist)
-Parsed arguments from process.argv, or wherever you like. If not set,
-[minimist](https://github.com/substack/minimist) is used to parse the
-arguments.
+Parsed arguments from process.argv, or wherever you like.
+
+If not set, [minimist](https://github.com/substack/minimist) is used to
+parse the arguments.
 
 ```
   require('minimist')(process.argv.slice(2), {
@@ -90,8 +108,14 @@ options.paths = [
   '.myapp.json'
 ];
 ```
-#### parsers
-The config file parsers.
+
+The order of paths is significant. If multiple files are found their
+contents are merged. If the same parameter appears in more than one file,
+the value from files later in the list will override values from files
+earlier in the list.  in the list of paths will override those earlier in
+the list.
+
+#### parsers The config file parsers.
 
 Parsers for config files are selected by filename extension. If there is no
 extension, the parser for the last extension in option extensions is used.
