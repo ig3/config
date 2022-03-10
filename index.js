@@ -12,7 +12,15 @@ const home = win
 module.exports = (opts = {}) => {
   if (opts.debug) console.debug('options: ', opts);
   if (opts.debug) console.debug('argv: ', process.argv);
-  const configArgv = opts.argv || require('minimist')(process.argv.slice(2));
+  const configArgv = opts.argv ||
+    require('minimist')(process.argv.slice(2), {
+      string: ['config'],
+      boolean: ['debug'],
+      alias: {
+        config: ['C'],
+        debug: ['d']
+      }
+    });
   opts.name = opts.name || configArgv.name ||
     pathop.basename(process.argv[1], '.js');
   const configEnv = env(opts.name + '_');

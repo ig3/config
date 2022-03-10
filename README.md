@@ -34,11 +34,23 @@ If truthy, print debug messages to console.debug.
 options.debug = true;
 ```
 
-#### argv (require('minimist')(process.argv.slice(2)))
+#### argv (minimist)
 Parsed arguments from process.argv, or wherever you like. If not set,
 [minimist](https://github.com/substack/minimist) is used to parse the
 arguments.
 
+```
+  require('minimist')(process.argv.slice(2), {
+    string: ['config'],
+    boolean: ['debug'],
+    alias: {
+      config: ['C'],
+      debug: ['d']
+    }
+  });
+```
+
+For example, to use nopt to process command line arguments:
 ```
 options.argv = nopt(knownOpts, shortHands, process.argv, 2);
 ```
@@ -62,14 +74,14 @@ options.config = '/tmp/test/config.json';
 The paths to search for config files.
 
 Default paths are:
- * /etc/<name>
- * /etc/<name>/config
- * ~/.config/<name>
- * ~/.config/<name>/config
- * ~/.<name>
- * ~/.<name>/config
- * .<name>
- * <name>
+ * /etc/&lt;name>
+ * /etc/&lt;name>/config
+ * ~/.config/&lt;name>
+ * ~/.config/&lt;name>/config
+ * ~/.&lt;name>
+ * ~/.&lt;name>/config
+ * .&lt;name>
+ * &lt;name>
 
 ```
 options.paths = [
