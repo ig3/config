@@ -94,12 +94,17 @@ The paths to search for config files.
 Default paths are:
  * /etc/&lt;name>
  * /etc/&lt;name>/config
+ * /usr/local/etc/&lt;name>
+ * /usr/local/etc/&lt;name>/config
  * ~/.config/&lt;name>
  * ~/.config/&lt;name>/config
  * ~/.&lt;name>
  * ~/.&lt;name>/config
  * .&lt;name>
  * &lt;name>
+
+The path starting with '~' are dependent on the environment variable HOME
+being set. If it is not set, these paths will not be checked.
 
 ```
 options.paths = [

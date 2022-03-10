@@ -30,11 +30,15 @@ module.exports = (opts = {}) => {
     if (!win) {
       opts.paths.push(pathop.join('/etc', opts.name));
       opts.paths.push(pathop.join('/etc', opts.name, 'config'));
+      opts.paths.push(pathop.join('/usr/local/etc', opts.name));
+      opts.paths.push(pathop.join('/usr/local/etc', opts.name, 'config'));
     }
-    opts.paths.push(pathop.join(home, '.config', opts.name));
-    opts.paths.push(pathop.join(home, '.config', opts.name, 'config'));
-    opts.paths.push(pathop.join(home, '.' + opts.name));
-    opts.paths.push(pathop.join(home, '.' + opts.name, 'config'));
+    if (home) {
+      opts.paths.push(pathop.join(home, '.config', opts.name));
+      opts.paths.push(pathop.join(home, '.config', opts.name, 'config'));
+      opts.paths.push(pathop.join(home, '.' + opts.name));
+      opts.paths.push(pathop.join(home, '.' + opts.name, 'config'));
+    }
     opts.paths.push('.' + opts.name);
     opts.paths.push(opts.name);
     if (config) opts.paths.push(config);
