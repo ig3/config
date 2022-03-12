@@ -1,6 +1,6 @@
 {
 	"name": "@ig3/config",
-	"version": "0.1.1",
+	"version": "0.2.0",
 	"main": "index.js",
 	"description": "",
 	"license": "(ISC)",
@@ -23,7 +23,7 @@
 	"dependencies": {
 		"deep-extend": "^0.6.0",
 		"ini": "^2.0.0",
-		"minimist": "^1.2.5",
-		"strip-json-comments": "^4.0.0"
+		"json5": "^2.2.0",
+		"minimist": "^1.2.5"
 	}
 }

@@ -1,6 +1,6 @@
 'use strict';
 const fs = require('fs');
-const stripJsonComments = require('strip-json-comments');
+const JSON5 = require('json5');
 const pathop = require('path');
 const deepExtend = require('deep-extend');
 const ini = require('ini');
@@ -45,14 +45,16 @@ module.exports = (opts = {}) => {
   }
   if (!opts.parsers) {
     opts.parsers = {
-      '.json': content => JSON.parse(stripJsonComments(content)),
+      '.json5': content => JSON5.parse(content),
+      '.json': content => JSON.parse(content),
       '.ini': content => ini.parse(content)
     };
   }
   if (!opts.extensions) {
     opts.extensions = [
-      '.ini',
-      '.json'
+      '.json5',
+      '.json',
+      '.ini'
     ];
   }
   if (!opts.defaults) {
@@ -67,7 +69,7 @@ module.exports = (opts = {}) => {
     const extension = pathop.extname(path);
     const parser =
       opts.parsers[extension] ||
-      opts.parsers[opts.extensions[opts.extensions.length - 1]];
+      opts.parsers[opts.extensions[0]];
     if (!parser) throw new Error('No parser for ' + path);
     try {
       const config = parser(fs.readFileSync(path, 'utf8'));

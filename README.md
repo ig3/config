@@ -127,8 +127,8 @@ extension, the parser for the last extension in option extensions is used.
 
 ```
 options.parsers = {
-  '.json': JSON.parse,
   '.json5': JSON5.parse,
+  '.json': JSON.parse,
   '.ini': ini.parse
 };
 ```
@@ -152,6 +152,12 @@ None.
 MIT, see [LICENSE.md](http://github.com/ig3/agiloft-script/blob/master/LICENSE.md) for details.
 
 ## Change Log
+
+### 0.2.0
+Remove strop-json-comments and add JSON5.
+
+### 0.1.0
+Add missing dependencies
 
 ### 0.0.1
 
