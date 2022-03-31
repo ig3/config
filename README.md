@@ -153,6 +153,10 @@ MIT, see [LICENSE.md](http://github.com/ig3/agiloft-script/blob/master/LICENSE.m
 
 ## Change Log
 
+### 0.2.2 - 20220331
+
+Update all dependencies.
+
 ### 0.2.1 - 20220331
 
 Fix the precedence of config option: command line; environment; options
