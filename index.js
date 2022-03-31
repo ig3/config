@@ -24,7 +24,7 @@ module.exports = (opts = {}) => {
   opts.name = opts.name || configArgv.name ||
     pathop.basename(process.argv[1], '.js');
   const configEnv = env(opts.name + '_');
-  const config = opts.config || configEnv.config || configArgv.config;
+  const config = configArgv.config || configEnv.config || opts.config;
   if (!opts.paths) {
     opts.paths = [];
     if (!win) {
