@@ -18,8 +18,8 @@ module.exports = (opts = {}) => {
       boolean: ['debug'],
       alias: {
         config: ['C'],
-        debug: ['d']
-      }
+        debug: ['d'],
+      },
     });
   opts.name = opts.name || configArgv.name ||
     pathop.basename(process.argv[1], '.js');
@@ -47,14 +47,14 @@ module.exports = (opts = {}) => {
     opts.parsers = {
       '.json5': content => JSON5.parse(content),
       '.json': content => JSON.parse(content),
-      '.ini': content => ini.parse(content)
+      '.ini': content => ini.parse(content),
     };
   }
   if (!opts.extensions) {
     opts.extensions = [
       '.json5',
       '.json',
-      '.ini'
+      '.ini',
     ];
   }
   if (!opts.defaults) {
@@ -107,7 +107,7 @@ module.exports = (opts = {}) => {
   return deepExtend.apply(null, configs.concat([
     configEnv,
     configArgv,
-    { configs: configFiles }
+    { configs: configFiles },
   ]));
 };
 
