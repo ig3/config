@@ -173,3 +173,4 @@ Initial release
 
 ### 0.2.3 - WIP
  * Update dependencies
+ * Fix tests
