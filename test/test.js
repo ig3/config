@@ -1,5 +1,5 @@
 'use strict';
-const t = require('tape');
+const t = require('@ig3/test');
 const pathop = require('path');
 
 const fs = require('fs');
@@ -14,7 +14,7 @@ t.test('require returns a function', t => {
   t.end();
 });
 
-t('debug writes messages to console.debug', t => {
+t.test('debug writes messages to console.debug', t => {
   const factory = require('../index.js');
   let consoleDebugCalled = false;
   const origDebug = console.debug;
@@ -28,7 +28,7 @@ t('debug writes messages to console.debug', t => {
   t.end();
 });
 
-t('load config from specified path', t => {
+t.test('load config from specified path', t => {
   const factory = require('../index.js');
   const conf = factory({
     paths: [
@@ -40,7 +40,7 @@ t('load config from specified path', t => {
   t.end();
 });
 
-t('debug writes From messages to console.debug', t => {
+t.test('debug writes From messages to console.debug', t => {
   const factory = require('../index.js');
   let gotFrom = false;
   const origDebug = console.debug;
@@ -61,7 +61,7 @@ t('debug writes From messages to console.debug', t => {
   t.end();
 });
 
-t('load config from file with extension', t => {
+t.test('load config from file with extension', t => {
   const factory = require('../index.js');
   const conf = factory({
     paths: [
@@ -73,7 +73,7 @@ t('load config from file with extension', t => {
   t.end();
 });
 
-t('throws on unparsable config', t => {
+t.test('throws on unparsable config', t => {
   try {
     const factory = require('../index.js');
     const conf = factory({
@@ -89,7 +89,7 @@ t('throws on unparsable config', t => {
   t.end();
 });
 
-t('throws on config with no permissions', t => {
+t.test('throws on config with no permissions', t => {
   fs.writeFileSync('/tmp/nopermissions.json', '{}', {
     mode: 0o000,
   });
@@ -111,7 +111,7 @@ t('throws on config with no permissions', t => {
   t.end();
 });
 
-t('get config from env', t => {
+t.test('get config from env', t => {
   const factory = require('../index.js');
   process.env.xxx_param = 'somevalue';
   process.env.xxx_param__sub = 'x';
@@ -129,7 +129,7 @@ t('get config from env', t => {
   t.end();
 });
 
-t('load config from current directory', t => {
+t.test('load config from current directory', t => {
   const factory = require('../index.js');
   process.chdir(pathop.join(__dirname, 'data'));
   const conf = factory({
@@ -140,7 +140,7 @@ t('load config from current directory', t => {
   t.end();
 });
 
-t('load config from config file', t => {
+t.test('load config from config file', t => {
   const factory = require('../index.js');
   const conf = factory({
     name: 'test',
@@ -151,7 +151,7 @@ t('load config from config file', t => {
   t.end();
 });
 
-t('throws if no parser', t => {
+t.test('throws if no parser', t => {
   const factory = require('../index.js');
   try {
     factory({
@@ -166,7 +166,7 @@ t('throws if no parser', t => {
   t.end();
 });
 
-t('throws if no parser for extension', t => {
+t.test('throws if no parser for extension', t => {
   const factory = require('../index.js');
   try {
     factory({
